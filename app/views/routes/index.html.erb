@@ -1,0 +1,8 @@
+<h1> Index page </h1>
+
+<%= link_to "New Route", new_route_path %> <br>
+
+<h3> All Route Descriptions </h3> <br>
+<% @all_routes.each do |route| %>
+	<%=route.description %> <br>
+<%end%>

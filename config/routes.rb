@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :routes
 
   get 'routes/:id/output' => 'routes#output'
+  get 'routes/:id/upload' => 'routes#upload'
+  patch 'routes/:id/create_solution' => 'routes#create_solution'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

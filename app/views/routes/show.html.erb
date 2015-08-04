@@ -1,0 +1,12 @@
+<h1> Individual Routes </h1>
+
+<div>
+<h4> <%= @route.description %> </h4>
+</div>
+
+<div>
+	<p> <% @route.coordinates.each do |k,v| %>
+	<%=  "#{k}; Lat: #{v[:lat]}, Long: #{v[:long]}" %>
+	</p>
+	<%end%>
+</div>

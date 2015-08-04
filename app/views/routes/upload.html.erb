@@ -1,0 +1,9 @@
+<h1> Upload solution file </h1>
+
+<div>
+	<%= form_for @route, url: { action: "create_solution" }  do |f| %>
+	<div> <%=f.label :solution, "Solution" %> </div>
+	<div> <%=f.text_area :solution, size: "80x20" %> </div>
+	<div> <%=f.submit "Submit" %> </div>
+	<%end%>
+</div>

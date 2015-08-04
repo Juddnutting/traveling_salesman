@@ -5,8 +5,12 @@ class Route < ActiveRecord::Base
 
 
 	def build_all
-
+		self.format_input
+		self.calc_distances
+		self.build_matrix
 	end
+
+	
 
 	def format_input
 		temp_coordinates = {}
@@ -50,7 +54,7 @@ class Route < ActiveRecord::Base
 		end
 	end
 
-	
+
 
 	private
 

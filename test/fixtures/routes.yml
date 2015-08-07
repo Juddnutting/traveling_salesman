@@ -3,9 +3,18 @@
 # This model initially had no columns defined.  If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
-#
-one: {}
+
+test1:
+  input: "California, 38.555605, -121.468926\n Alabama, 32.361538, -86.279118\n Connecticut, 41.767, -72.677"
+  coordinates: {}
+  locations: []
+  distances: {}
+
 # column: value
 #
-two: {}
+# test1_completed: "California, 38.555605, -121.468926\n Alabama, 32.361538, -86.279118\n Connecticut, 41.767, -72.677"
+  # coordinates: {"California" => {lat: 38.555605, long: -121.468926}, "Alabama"=> {lat:32.361538, long:-86.279118}, "Connecticut" => {lat:41.767, long:-72.677}}
+  # locations: ["Alabama", "California", "Connecticut"]
+  # distances: {}
+
 #  column: value

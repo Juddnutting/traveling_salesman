@@ -38,12 +38,12 @@ class RoutesController < ApplicationController
 		if @route.save
 			redirect_to root_url	
 		end
-		# raise 'foo'
-		
 	end
 
-	def output_path(resource)
-		"/routes/#{resource.id}/output"
-	end
+	private
+
+		def output_path(resource)
+			"/routes/#{resource.id}/output"
+		end
 
 end

@@ -1,12 +1,12 @@
 <h1> Create a Route </h1>
 
-<p> paste in data with format "location; lat, long" like "Denver; 39.7, -104.99" </p>
+<p> paste in data with format "location, lat, long" like "Denver, 39.7, -104.99" </p>
 
 <div>
 	<%= form_for @route do |f| %>
 	<div> <%=f.label :description, "Route Description" %> </div>
 	<div> <%=f.text_field :description %> </div>
 	<div> <%=f.text_area :input, size: "80x20" %> </div>
-	<div> <%=f.submit "Submit JSON" %> </div>
+	<div> <%=f.submit "Submit Coordinates" %> </div>
 	<%end%>
 </div>

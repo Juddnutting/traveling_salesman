@@ -24,6 +24,12 @@ class RoutesController < ApplicationController
 		@route = Route.find(params[:id])
 	end
 
+	def destroy
+		Route.find(params[:id]).destroy
+		redirect_to root_url
+	end
+		
+
 	def output
 		@route = Route.find(params[:id])
 	end
@@ -35,8 +41,10 @@ class RoutesController < ApplicationController
 	def create_solution
 		@route = Route.find(params[:id])
 		@route.solution = params[:route][:solution]
+		@route.parse_solution
+		@route.build_optimal_path
 		if @route.save
-			redirect_to root_url	
+			redirect_to @route	
 		end
 	end
 

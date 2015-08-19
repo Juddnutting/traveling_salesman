@@ -4,8 +4,7 @@ class RouteTest < ActiveSupport::TestCase
   
 	def setup
 		@route = routes(:test1)
-		@route.format_input
-		@formatted_route  = @route
+		@formatted_route = @route.format_input
 		@route = routes(:test1)
 	end
 
@@ -30,6 +29,8 @@ class RouteTest < ActiveSupport::TestCase
 			assert @formatted_route.locations.include?(k)
 		end 
 	end
+
+	
 
 
 end

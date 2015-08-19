@@ -5,11 +5,15 @@ class Route < ActiveRecord::Base
 	serialize :solution
 	serialize :optimal_path
 
+	validates :input, presence: true
+	validates :description, presence: true
+
 
 	def build_all
 		self.format_input
 		self.calc_distances
 		self.build_matrix
+		self.output_TSP_file
 	end
 
 	
@@ -25,6 +29,7 @@ class Route < ActiveRecord::Base
 		end
 		self.coordinates = temp_coordinates
 		self.locations = temp_locations.sort
+		self
 	end
 
 	
@@ -44,6 +49,7 @@ class Route < ActiveRecord::Base
 				end
 			end 
 		end
+		self
 	end
 
 	def build_matrix
@@ -54,10 +60,12 @@ class Route < ActiveRecord::Base
 			end
 			matrix << "\n"
 		end
+		self
 	end
 
 	def TSP_header
-		header = "NAME: #{self.description} input file
+		header =
+	 	"NAME: #{self.description} input file
 		Type: TSP
 		COMMENT: #{self.description}
 		DIMENSION: #{self.locations.size}
@@ -68,13 +76,21 @@ class Route < ActiveRecord::Base
 		header
 	end
 
+	def output_TSP_file
+		save_path = Rails.root.join('public','matrix_output',"#{self.description}.tsp")
+		File.open(save_path, 'w') do |f|
+			f.write(self.TSP_header)
+			f.write(self.matrix)
+		end
+	end
+
 	def parse_solution
 		self.solution = self.solution.strip.split(" ").map(&:to_i)
 	end
 
 	def build_optimal_path
 		solution.each do |index|
-			optimal_path << locations[index]
+			optimal_path << [locations[index], coordinates[locations[index]][:lat], coordinates[locations[index]][:long]]
 		end
 	end
 

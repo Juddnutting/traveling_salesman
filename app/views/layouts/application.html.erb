@@ -4,14 +4,46 @@
   <title>TravelingSalesman</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcpaPT7Qmnf4GMrVFZ5SGz-cS7hNlXDsw">
+    </script>
   <%= csrf_meta_tags %>
-</head>
-<body>
-	
-    <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%=message_type %>"><%= message %></div>
-    <% end %>
 
+	<style type="text/css">
+      html, body, #map-canvas { height: 600px; margin: 0; padding: 0;}
+    </style>
+    <script> 
+    function initialize() {
+        var mapOptions = {
+          center: { lat: 39.7, lng: -104.5},
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+      }
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+    
+  </head>
+
+<body>
+	<header class="navbar navbar-default" role="navigation">
+    <div class="navbar-inner">
+      <div class="container">
+        <div id="logo" class="navbar-brand"><%= link_to "TSP", root_path %></div>
+        <nav class="collapse navbar-collapse navbar-ex1-collapse">
+        	<ul class="nav navbar-nav navbar-right">
+							<li><%= link_to 'New Route', new_route_path %></li>
+							</ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+	<div id="main_content" class="container">
+		<% flash.each do |name, msg| %>
+			<%= content_tag(:div, msg, class: "alert alert-info") %>
+		<% end %>
 <%= yield %>
 </div>
 </body>

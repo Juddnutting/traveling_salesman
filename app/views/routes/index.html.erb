@@ -2,7 +2,12 @@
 
 <%= link_to "New Route", new_route_path %> <br>
 
-<h3> All Route Descriptions </h3> <br>
+<h3> All Routes </h3> <br>
 <% @all_routes.each do |route| %>
-	<%=route.description %> <br>
+	<div>
+	<%=link_to route.description, route_path(route), class:"text-primary" %>
+	<%=link_to "Delete", route, class:"btn btn-danger", method: :delete, data: {confirm: "Are you sure"} %>
+	</div>
+	<br/>
 <%end%>
+

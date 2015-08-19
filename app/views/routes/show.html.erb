@@ -1,6 +1,8 @@
 <h1> Individual Routes </h1>
 
 <div>
+<%= link_to "Get Output for Solver", :controller => "routes", :action => "output", :id => @route %> <br/>
+<%= link_to "Upload Solution", :controller => "routes", :action => "upload", :id => @route %>
 <h4> <%= @route.description %> </h4>
 </div>
 
@@ -10,3 +12,19 @@
 	</p>
 	<%end%>
 </div>
+
+<h3> Optimal Route </h3>
+<div>
+	<p> <% @route.optimal_path.each do |location| %>
+	<%= "#{location[0]}, Lat: #{location[1]}, Long: #{location[2]}" %>
+	</p>
+	<%end%>
+	
+</div>
+
+<div id="map-canvas"></div>
+
+
+
+
+

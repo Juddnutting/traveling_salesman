@@ -1,25 +1,61 @@
-<h1> Individual Routes </h1>
+
+<h1> Route Title: <%= @route.description %>  </h1>
 
 <div>
-<%= link_to "Get Output for Solver", :controller => "routes", :action => "output", :id => @route %> <br/>
-<%= link_to "Upload Solution", :controller => "routes", :action => "upload", :id => @route %>
-<h4> <%= @route.description %> </h4>
+	<%= link_to "Get Output for Solver", :controller => "routes", :action => "output", :id => @route %> <br/>
+	<%= link_to "Upload Solution", :controller => "routes", :action => "upload", :id => @route %>
 </div>
 
-<div>
-	<p> <% @route.coordinates.each do |k,v| %>
-	<%=  "#{k}; Lat: #{v[:lat]}, Long: #{v[:long]}" %>
-	</p>
-	<%end%>
-</div>
-
-<h3> Optimal Route </h3>
-<div>
-	<p> <% @route.optimal_path.each do |location| %>
-	<%= "#{location[0]}, Lat: #{location[1]}, Long: #{location[2]}" %>
-	</p>
-	<%end%>
+<div class="row">
 	
+	<div class="col-md-6">
+		<h3>Submitted Route</h3>
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Location</th>
+						<th>Latitude</th>
+						<th>Longitude</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @route.coordinates.each do |k,v| %>
+						<tr>
+							<td><%= "#{k}" %></td>
+							<td><%= "#{v[:lat]}" %></td>
+							<td><%= "#{v[:long]}" %></td>	
+						</tr>
+					<%end%>
+				
+				</tbody>
+			</table>
+
+	</div>
+</div>
+<div class="row">
+	
+	<div class="col-md-6">
+		<h3> Optimal Route </h3>
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Location</th>
+						<th>Latitude</th>
+						<th>Longitude</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @route.optimal_path.each do |location| %>
+						<tr>
+							<td><%= "#{location[0]}" %></td>
+							<td><%= "#{location[1]}" %></td>
+							<td><%= "#{location[2]}" %></td>	
+						</tr>
+					<%end%>
+				
+				</tbody>
+			</table>
+	</div>
 </div>
 
 <div id="map-canvas"></div>

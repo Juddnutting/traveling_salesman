@@ -1,13 +1,19 @@
-<h1> Index page </h1>
+<h1> All Routes </h1>
 
 <%= link_to "New Route", new_route_path %> <br>
 
-<h3> All Routes </h3> <br>
+<div class="row">
+<div class="col-md-6">
+	
 <% @all_routes.each do |route| %>
-	<div>
-	<%=link_to route.description, route_path(route), class:"text-primary" %>
-	<%=link_to "Delete", route, class:"btn btn-danger", method: :delete, data: {confirm: "Are you sure"} %>
+	<div class="clearfix">
+		<h3>
+			<%=link_to route.description, route_path(route), class:"text-primary" %><br>
+			<small><%=link_to "Delete", route, method: :delete, data: {confirm: "Are you sure"} %></small>
+		</h3>
 	</div>
-	<br/>
+	
 <%end%>
+</div>	
+</div>
 

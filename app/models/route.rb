@@ -64,14 +64,14 @@ class Route < ActiveRecord::Base
 	end
 
 	def TSP_header
-		header =
-	 	"NAME: #{self.description} input file
-		Type: TSP
-		COMMENT: #{self.description}
-		DIMENSION: #{self.locations.size}
-		EDGE_WEIGHT_TYPE: EXPLICIT
-		EDGE_WEIGHT_FORMAT: FULL_MATRIX
-		EDGE_WEIGHT_SECTION \n"
+		header =[
+	 	"NAME: #{self.description} input file",
+		"Type: TSP",
+		"COMMENT: #{self.description}",
+		"DIMENSION: #{self.locations.size}",
+		"EDGE_WEIGHT_TYPE: EXPLICIT",
+		"EDGE_WEIGHT_FORMAT: FULL_MATRIX",
+		"EDGE_WEIGHT_SECTION"]
 
 		header
 	end
@@ -79,7 +79,9 @@ class Route < ActiveRecord::Base
 	def output_TSP_file
 		save_path = Rails.root.join('public','matrix_output',"#{self.description}.tsp")
 		File.open(save_path, 'w') do |f|
-			f.write(self.TSP_header)
+			self.TSP_header.each do |line|
+				f.puts(line)
+			end
 			f.write(self.matrix)
 		end
 	end

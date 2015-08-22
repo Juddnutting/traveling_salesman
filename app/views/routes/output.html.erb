@@ -1,2 +1,5 @@
-<%= simple_format(@route.TSP_header) %>
+
+<% @route.TSP_header.each do |line| %>
+	<%= line %> <br/>
+	<% end %>
 <%= simple_format(@route.matrix) %>
